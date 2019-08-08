@@ -4,6 +4,9 @@
   "main": "index.js",
   "repository": "https://gitlab.com/fredericomartini/indecision-app.git",
   "author": "Frederico Martini <fredmalmeida@gmail.com>",
+  "scripts": {
+    "watch-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+  },
   "license": "MIT",
   "dependencies": {
     "babel-preset-env": "1.5.2",

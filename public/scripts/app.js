@@ -1,42 +1,37 @@
 'use strict';
 
-// console.log('App is running!!');
-
-// var template = (
-// <div>
-//     <h1>Indecision App</h1>
-//     <p>This is some info</p>
-//     <ol>
-//         <li>Item one</li>
-//         <li>Item two</li>
-//     </ol>
-// </div>
-// );
-
-// var appRoot = document.getElementById('app');
-
-// ReactDOM.render(template, appRoot);
-
-
 var rootApp = document.getElementById('app');
-var myTemplate = React.createElement(
+
+var user = {
+    name: 'Frederico Martini',
+    age: 30,
+    location: 'Pelotas'
+};
+
+var getLocation = function getLocation(location) {
+    return location ? React.createElement(
+        'p',
+        null,
+        'Location: ',
+        location
+    ) : null;
+};
+
+var template = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        'Frederico Martini'
+        user.name
     ),
     React.createElement(
         'p',
         null,
-        'Age: 30'
+        'Age: ',
+        user.age
     ),
-    React.createElement(
-        'p',
-        null,
-        'Location: Pelotas'
-    )
+    getLocation(user.location)
 );
 
-ReactDOM.render(myTemplate, rootApp);
+ReactDOM.render(template, rootApp);
