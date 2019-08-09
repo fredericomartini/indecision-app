@@ -1,23 +1,57 @@
-"use strict";
+'use strict';
 
-// var nameVar = 'Fred';
-// console.log('nameVar', nameVar)
+var rootApp = document.getElementById('app');
 
-// const multiplier = (nums, multBy) => nums.map(num => num * multBy);
+var counter = 0;
 
-
-// console.log(multiplier([5, 2, 3], 2));
-
-var multiplier = {
-    numbers: [2, 5, 3, 8],
-    multiplyBy: 3,
-    multiply: function multiply() {
-        var _this = this;
-
-        return this.numbers.map(function (num) {
-            return num * _this.multiplyBy;
-        });
-    }
+var decreaseCounter = function decreaseCounter() {
+    counter--;
+    console.log('decrease');
+    console.log(counter);
 };
 
-console.log(multiplier.multiply());
+var increaseCounter = function increaseCounter() {
+    counter++;
+    console.log('increase');
+    console.log(counter);
+};
+
+var reset = function reset() {
+    counter = 0;
+    console.log('reset');
+    console.log(counter);
+};
+
+var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        'Counter: ',
+        counter
+    ),
+    React.createElement(
+        'button',
+        { id: 'decrease',
+            className: 'button',
+            onClick: decreaseCounter },
+        '-1'
+    ),
+    React.createElement(
+        'button',
+        { id: 'increase',
+            className: 'button',
+            onClick: increaseCounter },
+        '+1'
+    ),
+    React.createElement(
+        'button',
+        { id: 'reset',
+            className: 'button',
+            onClick: reset },
+        'reset'
+    )
+);
+
+ReactDOM.render(template, rootApp);

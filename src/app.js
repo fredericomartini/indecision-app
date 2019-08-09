@@ -1,20 +1,39 @@
 const rootApp = document.getElementById('app');
 
-const user = {
-  name: 'Frederico Martini',
-  age: 30,
-  location:'Pelotas'
+let counter= 0;
+
+const decreaseCounter = () => {
+    counter--;
+    console.log('decrease');
+    console.log(counter);
 };
 
-const getLocation = location => {
-    return location ? <p>Location: {location}</p> : null;
+const increaseCounter = () => {
+    counter++;
+    console.log('increase');
+    console.log(counter);
+};
+
+const reset = () => {
+    counter =0;
+    console.log('reset');
+    console.log(counter);
 }
 
 const template = (
     <div>
-        <h1>{user.name}</h1>
-        <p>Age: {user.age}</p>
-        {getLocation(user.location)}
+        <h1>Counter: {counter}</h1>
+        <button id="decrease"
+        className="button"
+        onClick={decreaseCounter}>-1</button>
+
+        <button id="increase"
+        className="button"
+        onClick={increaseCounter}>+1</button>
+
+        <button id="reset"
+        className="button"
+        onClick={reset}>reset</button>
     </div>
 );
 
