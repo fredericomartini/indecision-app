@@ -1,37 +1,23 @@
-'use strict';
+"use strict";
 
-var rootApp = document.getElementById('app');
+// var nameVar = 'Fred';
+// console.log('nameVar', nameVar)
 
-var user = {
-    name: 'Frederico Martini',
-    age: 30,
-    location: 'Pelotas'
+// const multiplier = (nums, multBy) => nums.map(num => num * multBy);
+
+
+// console.log(multiplier([5, 2, 3], 2));
+
+var multiplier = {
+    numbers: [2, 5, 3, 8],
+    multiplyBy: 3,
+    multiply: function multiply() {
+        var _this = this;
+
+        return this.numbers.map(function (num) {
+            return num * _this.multiplyBy;
+        });
+    }
 };
 
-var getLocation = function getLocation(location) {
-    return location ? React.createElement(
-        'p',
-        null,
-        'Location: ',
-        location
-    ) : null;
-};
-
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        user.name
-    ),
-    React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
-    ),
-    getLocation(user.location)
-);
-
-ReactDOM.render(template, rootApp);
+console.log(multiplier.multiply());
