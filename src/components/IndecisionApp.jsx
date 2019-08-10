@@ -1,4 +1,3 @@
-import IndecisionApp from './components/IndecisionApp'
 // const render = () => {
 //     const template = (
 //         <div>
@@ -11,3 +10,7 @@ import IndecisionApp from './components/IndecisionApp'
 // }
 
 // render();
+
+return (
+    <h1>Indecision App</h1>
+)
