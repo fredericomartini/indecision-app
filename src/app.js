@@ -1,40 +1,96 @@
 const rootApp = document.getElementById('app');
-
-let counter= 0;
-
-const decreaseCounter = () => {
-    counter--;
-    console.log('decrease');
-    console.log(counter);
+const insertOption = () => {
+    console.log('option');
 };
 
-const increaseCounter = () => {
-    counter++;
-    console.log('increase');
-    console.log(counter);
-};
-
-const reset = () => {
-    counter =0;
-    console.log('reset');
-    console.log(counter);
+const appConfig = {
+    title: 'Indecision App!',
+    options: ['NodeJS', 'Laravel']
 }
 
-const template = (
-    <div>
-        <h1>Counter: {counter}</h1>
-        <button id="decrease"
-        className="button"
-        onClick={decreaseCounter}>-1</button>
+const removeOption = (event) => {
+    const name = event.target.name;
 
-        <button id="increase"
-        className="button"
-        onClick={increaseCounter}>+1</button>
+    if (name) {
+        appConfig.options = appConfig.options.filter((value) => value !== name);
+    }
 
-        <button id="reset"
-        className="button"
-        onClick={reset}>reset</button>
-    </div>
-);
+    renderApp();
+}
 
-ReactDOM.render(template, rootApp);
+const getOptions = () => {
+    if(appConfig.options){
+        return appConfig.options.map(option => {
+            return (
+                    <li key={option}>{option}
+                    <button style={{ marginLeft:"10px" }} name={option} onClick={removeOption}>-</button></li>
+            )
+        });
+    }
+}
+
+const addOption = (event) => {
+    event.preventDefault();
+    const {
+        target: {
+            elements: {
+                option,
+            }
+        }
+    } = event;
+
+    if (!option.value || option.value.trim() ==='') {
+        return;
+    }
+
+    if (appConfig.options.includes(option.value)) {
+        alert('Não é possível adicionar elementos duplicados!');
+        return;
+    }
+
+    appConfig.options.push(option.value.trim());
+    option.value = '';
+    // Reloads the DOM
+    renderApp();
+}
+
+const removeAll = (event) => {
+    event.preventDefault();
+
+    appConfig.options = [];
+
+    // Reloads the DOM
+    renderApp();
+}
+
+const onMakeDecision = () => {
+    const randomOption = Math.floor(Math.random() * appConfig.options.length);
+    console.log(randomOption);
+}
+
+const renderApp = () => {
+    const template = (
+        <div>
+            <h1>{appConfig.title}</h1>
+        {<p>{appConfig.options.length ? 'Options:': 'No Options'}</p>}
+        <p>Total: {appConfig.options.length}</p>
+
+        <button disabled={ !appConfig.options.length } onClick={onMakeDecision}>What should I do ?</button>
+        <button onClick={removeAll}>Remove All</button>
+
+        <ol className="my-options">
+        { getOptions() }
+        </ol>
+
+        <form onSubmit={addOption}>
+        <p>Option:</p>
+        <input type="text" name="option"/>
+        <button>Add</button>
+        </form>
+        </div>
+    );
+
+    ReactDOM.render(template, rootApp);
+}
+
+renderApp();
