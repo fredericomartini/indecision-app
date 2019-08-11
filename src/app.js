@@ -1,10 +1,14 @@
 class IndecisionApp extends React.Component {
     render() {
+        const title = 'Indecision';
+        const subtitle = 'Put your life in the hand os a computer.';
+        const options =  ['Option 1', 'Option 2', 'Option 3'];
         return (
             <div>
-                <Header />
+                <Header title={title} subtitle={subtitle} />
                 <Action />
-                <Options />
+                <Options options={options} />
+                <AddOption />
             </div>
         );
     }
@@ -13,12 +17,9 @@ class IndecisionApp extends React.Component {
 class Header extends React.Component {
     render() {
         return (
-            <div style={{  "backgroundColor": "#322b38",
-                    "padding": "10px",
-                    "marginBottom": "30px",
-                }} >
-                <h1>Indecision</h1>
-                <p>Put your life in the hand os a computer.</p>
+            <div>
+                <h1>{this.props.title}</h1>
+                <p>{this.props.subtitle}</p>
             </div>
         );
     }
@@ -27,29 +28,31 @@ class Header extends React.Component {
 class Action extends React.Component {
     render() {
         return (
-            <div style={{  "backgroundColor": "#6b2ca3",
-                    "padding": "10px",
-                    "marginBottom": "10px",
-                    "width": "400px"
-                }} >
+            <div>
                 <button>What should I Do ?</button>
             </div>
         );
     }
 }
 
-
-class Option extends React.Component {
-    removeOption(event) {
-        event.preventDefault();
-        console.log(`Remover ${event.target}`)
-    };
-
+class AddOption extends React.Component {
     render() {
         return (
             <div>
-                <li>Option! <button onClick={this.removeOption}>Remove</button></li>
-                <span>---------------------------</span>
+                <form>
+                    <input type="text"></input>
+                    <button>Add Option</button>
+                </form>
+            </div>
+        );
+    }
+}
+
+class Option extends React.Component {
+    render() {
+        return (
+            <div>
+                <li>{this.props.title}</li>
             </div>
         );
     }
@@ -57,27 +60,21 @@ class Option extends React.Component {
 
 class Options extends React.Component {
     render() {
+        const options = this.props.options;
+
         return (
-            <div style={{  "backgroundColor": "#464b5e",
-                    "padding": "10px",
-                    "marginBottom": "10px",
-                    "width": "400px"
-                }} >
+            <div>
                 <p>Your Options <button>Remove All</button></p>
-                <ol>
-                    <Option />
-                    <Option />
-                    <Option />
-                </ol>
+                {options && (
+                    <div className='options'>
+                        {options.map((option, index) => {
+                            return <Option key={index} title={option} />
+                        })}
+                    </div>
+                )}
             </div>
         );
     }
 }
-
-const jsx = (
-    <div>
-        <h1>Title</h1>
-    </div>
-);
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
