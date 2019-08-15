@@ -43,25 +43,25 @@ var IndecisionApp = function (_React$Component) {
       var options = this.state.options;
 
       var randomIndex = Math.floor(Math.random() * options.length);
-      console.log(options[randomIndex]);
+      var random = options[randomIndex];
+      console.log(random);
+      alert(random);
     }
   }, {
     key: 'handleAddOne',
-    value: function handleAddOne(event) {
-      event.preventDefault();
-      var option = event.target.elements.option;
-
-
-      if (!option.value || option.value.trim() === '') {
-        return;
+    value: function handleAddOne(option) {
+      if (!option || option.trim() === '') {
+        return 'Please, put a valid value';
+      }
+      if (this.state.options.indexOf(option) !== -1) {
+        return 'Option already selected';
       }
 
-      this.setState(function (prevState) {
+      return this.setState(function (prevState) {
         return {
-          options: [].concat(_toConsumableArray(prevState.options), [option.value.trim()])
+          options: [].concat(_toConsumableArray(prevState.options), [option])
         };
       });
-      option.value = '';
     }
   }, {
     key: 'render',
@@ -145,21 +145,48 @@ var Action = function (_React$Component3) {
 var AddOption = function (_React$Component4) {
   _inherits(AddOption, _React$Component4);
 
-  function AddOption() {
+  function AddOption(props) {
     _classCallCheck(this, AddOption);
 
-    return _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).apply(this, arguments));
+    var _this4 = _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).call(this, props));
+
+    _this4.state = {
+      error: undefined
+    };
+
+    _this4.handleAddOne = _this4.handleAddOne.bind(_this4);
+    return _this4;
   }
 
   _createClass(AddOption, [{
+    key: 'handleAddOne',
+    value: function handleAddOne(event) {
+      event.preventDefault();
+      var option = event.target.elements.option;
+
+
+      var error = this.props.handleAddOne(option.value);
+      this.setState(function () {
+        return {
+          error: error
+        };
+      });
+      option.value = '';
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
         'div',
         null,
+        this.state.error && React.createElement(
+          'p',
+          null,
+          this.state.error
+        ),
         React.createElement(
           'form',
-          { onSubmit: this.props.handleAddOne },
+          { onSubmit: this.handleAddOne },
           React.createElement('input', { type: 'text', name: 'option' }),
           React.createElement(
             'button',

@@ -19,25 +19,22 @@ class IndecisionApp extends React.Component {
   handlePickOne() {
     const { options } = this.state;
     const randomIndex = Math.floor(Math.random() * options.length);
-    console.log(options[randomIndex]);
+    const random = options[randomIndex];
+    console.log(random);
+    alert(random);
   }
 
-  handleAddOne(event) {
-    event.preventDefault();
-    const {
-      target: {
-        elements: { option },
-      },
-    } = event;
-
-    if (!option.value || option.value.trim() === '') {
-      return;
+  handleAddOne(option) {
+    if (!option || option.trim() === '') {
+      return 'Please, put a valid value';
+    }
+    if (this.state.options.indexOf(option) !== -1) {
+      return 'Option already selected';
     }
 
-    this.setState((prevState) => ({
-      options: [...prevState.options, option.value.trim()],
+    return this.setState((prevState) => ({
+      options: [...prevState.options, option],
     }));
-    option.value = '';
   }
 
   render() {
@@ -79,10 +76,35 @@ class Action extends React.Component {
 }
 
 class AddOption extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: undefined,
+    };
+
+    this.handleAddOne = this.handleAddOne.bind(this);
+  }
+
+  handleAddOne(event) {
+    event.preventDefault();
+    const {
+      target: {
+        elements: { option },
+      },
+    } = event;
+
+    const error = this.props.handleAddOne(option.value);
+    this.setState(() => ({
+      error,
+    }));
+    option.value = '';
+  }
+
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleAddOne}>
+        {this.state.error && <p>{this.state.error}</p>}
+        <form onSubmit={this.handleAddOne}>
           <input type="text" name="option" />
           <button>Add Option</button>
         </form>

@@ -17,7 +17,7 @@
   // "trailing-spaces.trimOnSave": true,
   "editor.tabSize": 2,
   // "editor.cursorStyle": "line-thin",
-  // "window.zoomLevel": -1,
+  "window.zoomLevel": -1,
   "workbench.colorTheme": "Atom One Dark",
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
