@@ -1,0 +1,126 @@
+// {
+//   "files.autoSave": "afterDelay",
+//   "editor.formatOnSave": true,
+//   "prettier.eslintIntegration": true,
+//   "eslint.autoFixOnSave": true,
+//   "debug.showInStatusBar": "always",
+//   "eslint.alwaysShowStatus": true,
+//   "yaml.format.enable": true,
+//   "files.trimTrailingWhitespace": true,
+//   "prettier.tslintIntegration": false,
+//   "editor.rulers": [80, 120],
+//   "window.zoomLevel": -1
+// }
+
+{
+  "workbench.iconTheme": "material-icon-theme",
+  // "trailing-spaces.trimOnSave": true,
+  "editor.tabSize": 2,
+  // "editor.cursorStyle": "line-thin",
+  // "window.zoomLevel": -1,
+  "workbench.colorTheme": "Atom One Dark",
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "explorer.confirmDragAndDrop": false,
+  "editor.formatOnSave": true,
+  "editor.renderLineHighlight": "gutter",
+  "[typescript]": {
+    "editor.formatOnSave": false
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": false
+  },
+  "editor.rulers": [80, 120],
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": false,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false,
+    "suppressUpdateNotice": false,
+    "suppressWelcomeNotice": true
+  },
+  "workbench.panel.location": "bottom",
+  "explorer.confirmDelete": false,
+  "extensions.ignoreRecommendations": false,
+  "python.jediEnabled": false,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "breadcrumbs.enabled": true,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "peacock.favoriteColors": [
+    {
+      "name": "Angular Red",
+      "value": "#b52e31"
+    },
+    {
+      "name": "Auth0 Orange",
+      "value": "#eb5424"
+    },
+    {
+      "name": "Azure Blue",
+      "value": "#007fff"
+    },
+    {
+      "name": "C# Purple",
+      "value": "#68217A"
+    },
+    {
+      "name": "Gatsby Purple",
+      "value": "#639"
+    },
+    {
+      "name": "Go Cyan",
+      "value": "#5dc9e2"
+    },
+    {
+      "name": "Java Blue-Gray",
+      "value": "#557c9b"
+    },
+    {
+      "name": "JavaScript Yellow",
+      "value": "#f9e64f"
+    },
+    {
+      "name": "Mandalorian Blue",
+      "value": "#1857a4"
+    },
+    {
+      "name": "Node Green",
+      "value": "#215732"
+    },
+    {
+      "name": "React Blue",
+      "value": "#00b3e6"
+    },
+    {
+      "name": "Something Different",
+      "value": "#832561"
+    },
+    {
+      "name": "Vue Green",
+      "value": "#42b883"
+    }
+  ]
+}

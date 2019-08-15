@@ -16,7 +16,7 @@
     "global-require": "off",
     "import/prefer-default-export": "off",
     "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
-    "max-classes-per-file": [true, 5, "exclude-class-expressions"],
-    "react/prefer-stateless-function": [2, { "ignorePureComponents": 0 }]
+    "max-classes-per-file": ["off", 5, "exclude-class-expressions"],
+    "react/prefer-stateless-function": [0, { "ignorePureComponents": true }]
   }
 }
