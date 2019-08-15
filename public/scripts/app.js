@@ -53,13 +53,13 @@ var IndecisionApp = function (_React$Component) {
       if (!option || option.trim() === '') {
         return 'Please, put a valid value';
       }
-      if (this.state.options.indexOf(option) !== -1) {
+      if (this.state.options.indexOf(option.trim()) !== -1) {
         return 'Option already selected';
       }
 
       return this.setState(function (prevState) {
         return {
-          options: [].concat(_toConsumableArray(prevState.options), [option])
+          options: [].concat(_toConsumableArray(prevState.options), [option.trim()])
         };
       });
     }
@@ -68,7 +68,7 @@ var IndecisionApp = function (_React$Component) {
     value: function render() {
       var title = 'Indecision';
       var subtitle = 'Put your life in the hand os a computer.';
-      // const options = ;
+
       return React.createElement(
         'div',
         null,

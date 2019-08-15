@@ -28,19 +28,19 @@ class IndecisionApp extends React.Component {
     if (!option || option.trim() === '') {
       return 'Please, put a valid value';
     }
-    if (this.state.options.indexOf(option) !== -1) {
+    if (this.state.options.indexOf(option.trim()) !== -1) {
       return 'Option already selected';
     }
 
     return this.setState((prevState) => ({
-      options: [...prevState.options, option],
+      options: [...prevState.options, option.trim()],
     }));
   }
 
   render() {
     const title = 'Indecision';
     const subtitle = 'Put your life in the hand os a computer.';
-    // const options = ;
+
     return (
       <div>
         <Header title={title} subtitle={subtitle} />
