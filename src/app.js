@@ -8,11 +8,16 @@ class IndecisionApp extends React.Component {
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.handlePickOne = this.handlePickOne.bind(this);
     this.handleAddOne = this.handleAddOne.bind(this);
+    this.handleDeleteOne = this.handleDeleteOne.bind(this);
   }
 
   handleDeleteOptions() {
-    this.setState(() => ({
-      options: [],
+    this.setState(() => ({ options: [] }));
+  }
+
+  handleDeleteOne(optionToRemove) {
+    this.setState((prevState) => ({
+      options: prevState.options.filter((option) => optionToRemove !== option),
     }));
   }
 
@@ -45,31 +50,12 @@ class IndecisionApp extends React.Component {
       <div>
         <Header title={title} subtitle={subtitle} />
         <Action hasOptions={this.state.options.length > 0} handlePickOne={this.handlePickOne} />
-        <Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions} />
+        <Options
+          options={this.state.options}
+          handleDeleteOptions={this.handleDeleteOptions}
+          handleDeleteOne={this.handleDeleteOne}
+        />
         <AddOption handleAddOne={this.handleAddOne} />
-      </div>
-    );
-  }
-}
-
-class Header extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.title}</h1>
-        <p>{this.props.subtitle}</p>
-      </div>
-    );
-  }
-}
-
-class Action extends React.Component {
-  render() {
-    return (
-      <div>
-        <button disabled={!this.props.hasOptions} onClick={this.props.handlePickOne}>
-          What should I Do ?
-        </button>
       </div>
     );
   }
@@ -94,9 +80,7 @@ class AddOption extends React.Component {
     } = event;
 
     const error = this.props.handleAddOne(option.value);
-    this.setState(() => ({
-      error,
-    }));
+    this.setState(() => ({ error }));
     option.value = '';
   }
 
@@ -113,36 +97,54 @@ class AddOption extends React.Component {
   }
 }
 
-class Option extends React.Component {
-  render() {
-    return (
-      <div>
-        <li>{this.props.title}</li>
-      </div>
-    );
-  }
-}
+const Header = (props) => (
+  <div>
+    <h1>{props.title}</h1>
+    <p>{props.subtitle}</p>
+  </div>
+);
 
-class Options extends React.Component {
-  render() {
-    const { options } = this.props;
-    return (
-      <div>
-        <p>
-          Your Options
-          {' '}
-          <button onClick={this.props.handleDeleteOptions}>Remove All</button>
-        </p>
-        {options && (
-          <div className="options">
-            {options.map((option, index) => (
-              <Option key={index} title={option} />
-            ))}
-          </div>
-        )}
-      </div>
-    );
-  }
-}
+const Action = (props) => (
+  <div>
+    <button disabled={!props.hasOptions} onClick={props.handlePickOne}>
+      What should I Do ?
+    </button>
+  </div>
+);
+
+const Option = (props) => (
+  <div>
+    <li>
+      {props.title}
+      <button
+        onClick={(event) => {
+          props.handleDeleteOne(props.title);
+        }}
+      >
+        {' '}
+        Remove
+      </button>
+    </li>
+  </div>
+);
+
+const Options = (props) => {
+  const { options } = props;
+  return (
+    <div>
+      <p>
+        Your Options
+        <button onClick={props.handleDeleteOptions}>Remove All</button>
+      </p>
+      {options && (
+        <div className="options">
+          {options.map((option, index) => (
+            <Option key={index} title={option} handleDeleteOne={props.handleDeleteOne} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
