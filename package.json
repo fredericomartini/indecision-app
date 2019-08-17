@@ -5,14 +5,24 @@
   "repository": "https://gitlab.com/fredericomartini/indecision-app.git",
   "author": "Frederico Martini <fredmalmeida@gmail.com>",
   "scripts": {
-    "watch-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "server": "live-server public/",
+    "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "build": "webpack --watch",
     "watch-babel-playground": "babel src/playground/es6-let-const.js --out-file=public/scripts/app.js --presets=env,react --watch"
   },
   "license": "MIT",
   "dependencies": {
+    "babel-cli": "6.24.1",
+    "babel-core": "6.25.0",
     "babel-eslint": "^10.0.2",
+    "babel-loader": "7.1.1",
     "babel-preset-env": "1.5.2",
-    "babel-preset-react": "6.24.1"
+    "babel-preset-react": "6.24.1",
+    "live-server": "^1.2.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "validator": "8.0.0",
+    "webpack": "3.1.0"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
