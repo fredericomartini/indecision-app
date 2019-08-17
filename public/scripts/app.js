@@ -19,7 +19,7 @@ var IndecisionApp = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).call(this, props));
 
     _this.state = {
-      options: ['Option 1', 'Option 2', 'Option 3']
+      options: []
     };
 
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
@@ -32,13 +32,30 @@ var IndecisionApp = function (_React$Component) {
   _createClass(IndecisionApp, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      console.log('componentDidMount');
+      try {
+        var options = JSON.parse(localStorage.getItem('options'));
+        if (options) {
+          this.setState(function () {
+            return {
+              options: options
+            };
+          });
+        }
+      } catch (error) {
+        // Do nothing
+      }
     }
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevOptions, prevState) {
-      console.log(prevOptions);
-      console.log(prevState);
+      var newOptions = this.state.options;
+      var oldOptions = prevState.options;
+
+      // Options changed
+
+      if (oldOptions.length !== newOptions.length) {
+        localStorage.setItem('options', JSON.stringify(newOptions));
+      }
     }
   }, {
     key: 'handleDeleteOptions',

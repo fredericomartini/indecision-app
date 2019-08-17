@@ -2,7 +2,7 @@ class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      options: ['Option 1', 'Option 2', 'Option 3'],
+      options: [],
     };
 
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
@@ -12,12 +12,28 @@ class IndecisionApp extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
+    try {
+      const options = JSON.parse(localStorage.getItem('options'));
+      if (options) {
+        this.setState(() => ({
+          options,
+        }));
+      }
+    } catch (error) {
+      // Do nothing
+    }
   }
 
   componentDidUpdate(prevOptions, prevState) {
-    console.log(prevOptions);
-    console.log(prevState);
+    const {
+      state: { options: newOptions },
+    } = this;
+    const { options: oldOptions } = prevState;
+
+    // Options changed
+    if (oldOptions.length !== newOptions.length) {
+      localStorage.setItem('options', JSON.stringify(newOptions));
+    }
   }
 
   handleDeleteOptions() {
