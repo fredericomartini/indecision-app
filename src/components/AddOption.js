@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 
 export default class AddOption extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: undefined,
-    };
+  state = {
+    error: undefined,
+  };
 
-    this.handleAddOne = this.handleAddOne.bind(this);
-  }
-
-  handleAddOne(event) {
+  handleAddOne = (event) => {
     event.preventDefault();
     const {
       target: {
@@ -21,17 +16,15 @@ export default class AddOption extends Component {
     const error = this.props.handleAddOne(option.value);
     this.setState(() => ({ error }));
     option.value = '';
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.handleAddOne}>
-          <input type="text" name="option" />
-          <button>Add Option</button>
-        </form>
-      </div>
-    );
-  }
+  render = () => (
+    <div>
+      {this.state.error && <p>{this.state.error}</p>}
+      <form onSubmit={this.handleAddOne}>
+        <input type="text" name="option" />
+        <button>Add Option</button>
+      </form>
+    </div>
+  );
 }
