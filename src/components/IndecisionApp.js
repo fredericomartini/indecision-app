@@ -78,7 +78,7 @@ export default class IndecisionApp extends Component {
     const title = 'Indecision';
     const subtitle = 'Put your life in the hand os a computer.';
     const {
-      state: { options },
+      state: { options, selectedOption },
     } = this;
 
     return (
@@ -92,7 +92,7 @@ export default class IndecisionApp extends Component {
         />
         <AddOption handleAddOne={this.handleAddOne} />
         <OptionModal
-          selectedOption={this.state.selectedOption}
+          selectedOption={selectedOption}
           handleClearSelectedOption={this.handleClearSelectedOption}
         />
       </div>
