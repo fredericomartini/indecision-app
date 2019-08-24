@@ -76,7 +76,7 @@ export default class IndecisionApp extends Component {
 
   render = () => {
     const title = 'Indecision';
-    const subtitle = 'Put your life in the hand os a computer.';
+    const subtitle = 'Put your life in the hand of a computer.';
     const {
       state: { options, selectedOption },
     } = this;
