@@ -31,8 +31,4 @@ yarn run dev-server
 
 It`s ready! :D
 
-![Indecision app](src/images/app.png)
-
-![Indecision app2](src/images/app1.png)
-
-![Indecision app2](src/images/app2.png)
+![Indecision app](src/images/app.gif)
